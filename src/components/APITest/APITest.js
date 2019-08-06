@@ -1,49 +1,48 @@
 import './APITest.css'
-import React, {Component} from 'react'
-import axios from 'axios'
-import {DARK_SKY_API_KEY} from '../../secrets'
+import React, { Component } from 'react'
+import axios from 'axios';
+
+
 
 export default class APITest extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-       latitude: '',
-       longitude: '',
-       loading: true
+      latitude: '',
+      longitude: '',
+      data: {},
+      loading: true
     }
   }
 
-  async componentDidMount() {
-    const getLocation = async ()=> {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(async position => {
-          const { latitude, longitude } = position.coords;
-          console.log(`BEFORE--->`,this.state)
-          this.setState({
-            latitude,
-            longitude,
-            loading: false
-          })
-
-          console.log(`AFTER--->`, this.state)
-
-          const coords = {
-            latitude: this.state.latitude,
-            longitude: this.state.longitude
+ async componentDidMount() {
+    const getLocation =async ()=> {
+      const success =async (position)=> {
+        const { data } = await axios.get('api/getweather', {
+          params: {
+            latitude: position.coords.latitude.toString(),
+            longitude: position.coords.longitude.toString()
+          },
+          proxy: {
+            host:'http:/localhost:8080',
+            port: 8080
           }
-
-          const { data } = await axios.get('/api/getWeather', coords)
-          console.log('DATA----->', data)
-          //axios.get(tos erver with optional object attachement that is the lat and long)
-        });
-      } else {
-          alert("Geolocation is not supported by this browser. Please enable to use the service")
+        })
+        this.setState({
+          data
+        })
+        console.log(`this.state ----> `, this.state)
       }
+      const error =(err)=> {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+      }
+      await navigator.geolocation.getCurrentPosition(success, error)
     }
 
     try {
-      getLocation()
+      getLocation();
+
     } catch (error) {
         console.log(error)
     }
@@ -52,7 +51,14 @@ export default class APITest extends Component {
   render() {
     return (
       <div>
-
+        {this.state.loading ?
+          <div style={{ backgroundColor: 'red' }}>Loading...</div>
+          :
+          <div>
+            <div>Latitude: {this.state.latitude}</div>
+            <div>Longitude: {this.state.longitude}</div>
+          </div>
+        }
       </div>
     )
   }

@@ -2,26 +2,25 @@ const PORT = 8080;
 const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
+const bodyParser = require('body-parser')
 const app = express()
 module.exports = app
 
-app.use(morgan('default'))
+//Morgan loggin Midware
+app.use(morgan('dev'))
 
 //Body parsing Middleware
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
 
 // Static file-serving middleware
 app.use(express.static(path.join(__dirname, '..', 'public')))
 
-// Routes that will be accessed via AJAX should be prepended with
-// /api so they are isolated from our GET /* wildcard.
-app.use('/api', require('./api'))
+app.use('/api', require('./api')); // include our routes!
 
-// Sends our index.html (the "single page" of our SPA)
-app.get('/', (req, res, next) => {
-  res.send('Hello World')
-})
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/index.html'));
+}); // Send index.html for any other requests
 
 // Error catching endware
 app.use((err, req, res, next) => {
@@ -29,6 +28,5 @@ app.use((err, req, res, next) => {
   console.error(err.stack)
   res.status(err.status || 500).send(err.message || 'Internal server error.')
 })
-
 
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`))

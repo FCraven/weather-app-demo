@@ -17,9 +17,13 @@ export default class APITest extends Component {
   }
 
  async componentDidMount() {
+   //getLocation function calls for geolocation coordinates
     const getLocation =async ()=> {
+
+      //success handler (recieves position object)
       const success =async (position)=> {
         const { data } = await axios.get('api/getweather', {
+          //adding params of lat and long to be received on the other sied of the request
           params: {
             latitude: position.coords.latitude.toString(),
             longitude: position.coords.longitude.toString()
@@ -33,14 +37,19 @@ export default class APITest extends Component {
           data,
           loading: false
         })
-        console.log(`this.state ----> `, this.state)
+
       }
+
+      //Error handling for rejection case
       const error =(err)=> {
         console.warn(`ERROR(${err.code}): ${err.message}`);
       }
+
+      //call to navigator for geolocation position
       await navigator.geolocation.getCurrentPosition(success, error)
     }
 
+    //run get location
     try {
       getLocation();
     } catch (error) {

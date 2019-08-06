@@ -24,13 +24,14 @@ export default class APITest extends Component {
             latitude: position.coords.latitude.toString(),
             longitude: position.coords.longitude.toString()
           },
-          proxy: {
-            host:'http:/localhost:8080',
-            port: 8080
-          }
+          // proxy: {
+          //   host:'http://localhost:8080',
+          //   port: 8080
+          // }
         })
         this.setState({
-          data
+          data,
+          loading: false
         })
         console.log(`this.state ----> `, this.state)
       }
@@ -42,7 +43,6 @@ export default class APITest extends Component {
 
     try {
       getLocation();
-
     } catch (error) {
         console.log(error)
     }

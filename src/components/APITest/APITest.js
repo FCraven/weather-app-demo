@@ -9,20 +9,27 @@ export default class APITest extends Component {
     super(props)
 
     this.state = {
-      latitude: '',
-      longitude: '',
+      currently: {},
+      daily: {},
+      flags: {},
+      hourly: {},
+      latitude: 0,
+      longitude: 0,
+      minutely: {},
+      offset: 0,
+      timezone: '',
       data: {},
       loading: true
     }
   }
 
- async componentDidMount() {
-   //getLocation function calls for geolocation coordinates
-    const getLocation =async ()=> {
+  async componentDidMount() {
+    //getLocation function calls for geolocation coordinates
+    const getLocation = async () => {
 
       //success handler (recieves position object)
-      const success =async (position)=> {
-        const { data } = await axios.get('api/getweather', {
+      const success = async (position) => {
+        const { data } = await axios.get('/api/getweather', {
           //adding params of lat and long to be received on the other sied of the request
           params: {
             latitude: position.coords.latitude.toString(),
@@ -33,15 +40,18 @@ export default class APITest extends Component {
           //   port: 8080
           // }
         })
+
+        const { currently, daily, flags, hourly, minutely, latitude, longitude, offset, timezone } = data
         this.setState({
-          data,
-          loading: false
+          currently, daily, flags, hourly, minutely, latitude, longitude, offset, timezone, loading: false
         })
+
+        console.log(`STATE OBJECT --- >`, this.state)
 
       }
 
       //Error handling for rejection case
-      const error =(err)=> {
+      const error = (err) => {
         console.warn(`ERROR(${err.code}): ${err.message}`);
       }
 
@@ -53,11 +63,12 @@ export default class APITest extends Component {
     try {
       getLocation();
     } catch (error) {
-        console.log(error)
+      console.log(error)
     }
   }
 
   render() {
+    console.log(this.state.currently)
     return (
       <div>
         {this.state.loading ?
@@ -66,6 +77,9 @@ export default class APITest extends Component {
           <div>
             <div>Latitude: {this.state.latitude}</div>
             <div>Longitude: {this.state.longitude}</div>
+
+
+
           </div>
         }
       </div>

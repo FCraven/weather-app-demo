@@ -7,7 +7,7 @@ const app = express()
 module.exports = app
 
 //Morgan loggin Midware
-app.use(morgan('dev'))
+app.use(morgan())
 
 //Body parsing Middleware
 app.use(bodyParser.json())

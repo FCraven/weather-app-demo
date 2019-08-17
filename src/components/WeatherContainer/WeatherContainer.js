@@ -1,5 +1,6 @@
 import './WeatherContainer.css'
 import React, { Component } from 'react'
+// import { DateObj } from '../../utils'
 import axios from 'axios';
 
 export default class WeatherContainer extends Component {
@@ -7,6 +8,7 @@ export default class WeatherContainer extends Component {
     super(props)
 
     this.state = {
+      currentTime: '',
       currently: {},
       daily: {},
       flags: {},
@@ -19,14 +21,22 @@ export default class WeatherContainer extends Component {
       data: {},
       loading: true
     }
+    this.tick = this.tick.bind(this)
   }//end constructor
 
+
+
+
   async componentDidMount() {
+    //sets a function to call tick() every second to keep time relatively accurate
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000
+    );
 
     //getLocation function calls for geolocation coordinates
     const getLocation = async () => {
-
-      //success handler
+    //success handler
       const success = async (position) => {
         const { data } = await axios.get('/api/getweather', {
           //adding lat and long from postion.coords to req
@@ -35,10 +45,10 @@ export default class WeatherContainer extends Component {
             longitude: position.coords.longitude.toString()
           }
         })
-
         //destructure keys off of data object to set on state
         const { currently, daily, flags, hourly, minutely, latitude, longitude, offset, timezone } = data
 
+        //set state to response from Dark Sky API
         this.setState({
           currently,
           daily,
@@ -53,13 +63,13 @@ export default class WeatherContainer extends Component {
         })
       }//end success
 
-      //Error handling for rejection case
-      const error = (err) => {
-        console.warn(`ERROR(${err.code}): ${err.message}`);
-      }
-      //call to navigator for coordinates
-      await navigator.geolocation.getCurrentPosition(success, error)
-    }//end getLocation
+    //Error handling for rejection case
+    const error = (err) => {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+    //call to navigator for coordinates
+    navigator.geolocation.getCurrentPosition(success, error)
+  }//end getLocation
 
     //run get location
     try {
@@ -69,41 +79,33 @@ export default class WeatherContainer extends Component {
     }
   }//end componentDidMount
 
+  componentWillUnmount() {
+    //removes setInterval timer
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    this.setState({
+      currentTime: new Date().toLocaleTimeString()
+    })
+  }
+
+
   render() {
-    const convert =(unixTimestamp)=> {
-      // Months array
-      const months_arr = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-      // Convert timestamp to milliseconds
-      const date = new Date(unixTimestamp * 1000);
-      // Year
-      const year = date.getFullYear();
-      // Month
-      const month = months_arr[date.getMonth()];
-      // Day
-      const day = date.getDate();
-      // Hours
-      const hours = date.getHours();
-      // Minutes
-      const minutes = "0" + date.getMinutes();
-      // Seconds
-      const seconds = "0" + date.getSeconds();
-      // Display date time in MM-dd-yyyy h:m:s format
-      const convdataTime = month+'-'+day+'-'+year+' '+hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
 
-      console.log(date)
-      return convdataTime
+    //  const dateObj = new DateObj(this.state.currently.time)
 
-     }
+     console.log(this.state)
 
     return (
-      <div>
+      <div style={{height:'100vw', width:'100vh'}}>
         {this.state.loading ?
-          <div style={{ backgroundColor: 'red' }}>Loading...</div>
+          <div style={{ display:'flex',justifyContent:'center',alignItems:'center',backgroundColor:'skyBlue', height:'100vh', width:'100vw', color:'yellow', fontSize: '3em', fontWeight:'5', position:'relative'}}>Loading...</div>
           :
           <div>
             <div>Latitude: {this.state.latitude}</div>
             <div>Longitude: {this.state.longitude}</div>
-            <div>Time: {convert(this.state.currently.time)}</div>
+            <div>Time: {this.state.currentTime}</div>
           </div>
         }
       </div>

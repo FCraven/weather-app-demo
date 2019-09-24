@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import CurrentWeather from '../CurrentWeather'
 
+
 export default class WeatherContainer extends Component {
   constructor(props) {
     super(props)
@@ -21,7 +22,7 @@ export default class WeatherContainer extends Component {
       timezone: '',
       data: {},
       loading: true,
-      place: {}
+      place: []
     }
     this.tick = this.tick.bind(this)
   }//end constructor
@@ -38,18 +39,23 @@ export default class WeatherContainer extends Component {
     const getLocation = async () => {
       //success handler
       const success = async (position) => {
+        const latitude = position.coords.latitude.toString()
+        const longitude = position.coords.longitude.toString()
         const { data } = await axios.get('/api/getweather', {
           //adding lat and long from postion.coords to req
-          params: {
-            latitude: position.coords.latitude.toString(),
-            longitude: position.coords.longitude.toString()
-          }
+          params: { latitude, longitude }
         })
+        const response = await axios.get('/api/getplace', {
+          params: { latitude, longitude }
+        })
+        const { results } = response.data
+
+        console.log(`client response to Google-->`, results)
         //destructure keys off of data object to set on state
-        const { currently, daily, flags, hourly, minutely, latitude, longitude, offset, timezone } = data
+        const { currently, daily, flags, hourly, minutely, offset, timezone } = data
 
         //set state to response from Dark Sky API
-        this.setState({
+        await this.setState({
           currently,
           daily,
           flags,
@@ -59,8 +65,10 @@ export default class WeatherContainer extends Component {
           longitude,
           offset,
           timezone,
-          loading: false
+          loading: false,
+          place: results
         })
+        console.log(this.state)
       }//end success
 
       //Error handling for rejection case
@@ -71,13 +79,10 @@ export default class WeatherContainer extends Component {
       navigator.geolocation.getCurrentPosition(success, error)
     }//end getLocation
 
-    const getPlace = async () => {
-
-    }
 
     //run get location
     try {
-      getLocation();
+      getLocation()
     } catch (error) {
       console.log(error)
     }
@@ -96,7 +101,7 @@ export default class WeatherContainer extends Component {
 
 
   render() {
-    console.log(`STATE ==-+-->`, this.state)
+    // console.log(this.state)
     //  const dateObj = new DateObj(this.state.currently.time)
     return (
       <div style={{ height: '100vw', width: '100vh' }}>

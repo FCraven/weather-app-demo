@@ -2,6 +2,7 @@ import './WeatherContainer.css'
 import React, { Component } from 'react'
 // import { DateObj } from '../../utils'
 import axios from 'axios';
+import CurrentWeather from '../CurrentWeather'
 
 export default class WeatherContainer extends Component {
   constructor(props) {
@@ -19,12 +20,11 @@ export default class WeatherContainer extends Component {
       offset: 0,
       timezone: '',
       data: {},
-      loading: true
+      loading: true,
+      place: {}
     }
     this.tick = this.tick.bind(this)
   }//end constructor
-
-
 
 
   async componentDidMount() {
@@ -63,19 +63,23 @@ export default class WeatherContainer extends Component {
         })
       }//end success
 
-    //Error handling for rejection case
-    const error = (err) => {
-      console.warn(`ERROR(${err.code}): ${err.message}`);
+      //Error handling for rejection case
+      const error = (err) => {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+      }
+      //call to navigator for coordinates
+      navigator.geolocation.getCurrentPosition(success, error)
+    }//end getLocation
+
+    const getPlace = async () => {
+
     }
-    //call to navigator for coordinates
-    navigator.geolocation.getCurrentPosition(success, error)
-  }//end getLocation
 
     //run get location
     try {
       getLocation();
     } catch (error) {
-        console.log(error)
+      console.log(error)
     }
   }//end componentDidMount
 
@@ -92,14 +96,26 @@ export default class WeatherContainer extends Component {
 
 
   render() {
-
+    console.log(`STATE ==-+-->`, this.state)
     //  const dateObj = new DateObj(this.state.currently.time)
     return (
-      <div style={{height:'100vw', width:'100vh'}}>
+      <div style={{ height: '100vw', width: '100vh' }}>
         {this.state.loading ?
-          <div style={{ display:'flex',justifyContent:'center',alignItems:'center',backgroundColor:'skyBlue', height:'100vh', width:'100vw', color:'yellow', fontSize: '3em', fontWeight:'5', position:'relative'}}>Loading...</div>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'skyBlue',
+            height: '100vh',
+            width: '100vw',
+            color: 'yellow',
+            fontSize: '3em',
+            fontWeight: '5',
+            position: 'relative'
+          }}>Loading...</div>
           :
           <div>
+            <CurrentWeather />
             <div>Latitude: {this.state.latitude}</div>
             <div>Longitude: {this.state.longitude}</div>
             <div>Time: {this.state.currentTime}</div>

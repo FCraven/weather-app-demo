@@ -36,7 +36,7 @@ export default class WeatherContainer extends Component {
 
     //getLocation function calls for geolocation coordinates
     const getLocation = async () => {
-    //success handler
+      //success handler
       const success = async (position) => {
         const { data } = await axios.get('/api/getweather', {
           //adding lat and long from postion.coords to req
@@ -94,9 +94,6 @@ export default class WeatherContainer extends Component {
   render() {
 
     //  const dateObj = new DateObj(this.state.currently.time)
-
-     console.log(this.state)
-
     return (
       <div style={{height:'100vw', width:'100vh'}}>
         {this.state.loading ?

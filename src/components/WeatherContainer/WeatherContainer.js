@@ -118,7 +118,11 @@ export default class WeatherContainer extends Component {
           }}>Loading...</div>
           :
           <div>
-            <CurrentWeather />
+            <CurrentWeather
+              currentWeather={this.state.currently}
+              time={this.state.currentTime}
+              place={this.state.place}
+            />
             <div>Latitude: {this.state.latitude}</div>
             <div>Longitude: {this.state.longitude}</div>
             <div>Time: {this.state.currentTime}</div>

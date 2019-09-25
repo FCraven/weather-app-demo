@@ -1,0 +1,36 @@
+#current-weather-containter {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#current-weather-top {
+  height: 40vh;
+  width: 100vw;
+  background-color: blue;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+#current-weather-icon {
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  position: absolute;
+  z-index: 2;
+  border: 2px solid white;
+  border-radius: 30px;
+}
+
+#current-weather-bottom {
+  height: 60vh;
+  width: 100vw;
+  background-color: red;
+  position: relative;
+}

@@ -84,7 +84,7 @@ export default class WeatherContainer extends Component {
     try {
       getLocation()
     } catch (error) {
-      console.log(error)
+        console.log(error)
     }
   }//end componentDidMount
 
@@ -99,9 +99,7 @@ export default class WeatherContainer extends Component {
     })
   }
 
-
   render() {
-    // console.log(this.state)
     //  const dateObj = new DateObj(this.state.currently.time)
     return (
       <div style={{ height: '100vw', width: '100vh' }}>

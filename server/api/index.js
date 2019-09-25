@@ -27,6 +27,4 @@ router.get('/getplace', async (req, res, next) => {
   }
 })
 
-// &locationbias=point:${latitude},${longitude}
-
 module.exports = router

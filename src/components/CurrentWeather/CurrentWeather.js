@@ -3,18 +3,23 @@ import React from 'react'
 
 const CurrentWeather = (props) => {
 
-  // const current = props.currentWeather;
-  // const time = props.time;
-  // const place = props.place
-  // const temperature = Math.round(current.temperature)
-  // const feelsLike = Math.round(current.apparentTemperature)
+  const { current, place, time } = props;
+  const temperature = Math.round(current.temperature)
+  const feelsLike = Math.round(current.apparentTemperature)
+  console.log(`PROPS -->`, props)
 
   return (
     <section id='current-weather-container'>
       <div id='current-weather-top'>
-        <div id='current-weather-icon'></div>
+        <div id='current-temperature'>{temperature}°</div>
       </div>
-      <div id='current-weather-bottom'></div>
+      <div id='current-weather-sunny'></div>
+      <div id='current-weather-water'>
+        <div id="current-weather-sand">
+          
+        </div>
+      </div>
+
     </section>
   )
 }

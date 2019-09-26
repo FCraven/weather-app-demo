@@ -102,7 +102,7 @@ export default class WeatherContainer extends Component {
   render() {
     //  const dateObj = new DateObj(this.state.currently.time)
     return (
-      <div style={{ height: '100vw', width: '100vh' }}>
+      <div style={{ height: '100%', width: '100%' }}>
         {this.state.loading ?
           <div style={{
             display: 'flex',
@@ -117,16 +117,11 @@ export default class WeatherContainer extends Component {
             position: 'relative'
           }}>Loading...</div>
           :
-          <div>
             <CurrentWeather
-              currentWeather={this.state.currently}
+              current={this.state.currently}
               time={this.state.currentTime}
               place={this.state.place}
             />
-            <div>Latitude: {this.state.latitude}</div>
-            <div>Longitude: {this.state.longitude}</div>
-            <div>Time: {this.state.currentTime}</div>
-          </div>
         }
       </div>
     )

@@ -1,4 +1,4 @@
-#current-weather-containter {
+#current-weather-container {
   height: 100%;
   width: 100%;
   display: flex;
@@ -7,30 +7,74 @@
   align-items: center;
 }
 
+
+/* CurrentWeather TopDiv */
 #current-weather-top {
-  height: 40vh;
-  width: 100vw;
-  background-color: blue;
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-
+  height: 50vh;
+  width: 100vw;
+  background-color: skyblue;
+  position: relative;
+  border-bottom: thin solid #F3A97F;
 }
 
-#current-weather-icon {
-  width: 100px;
-  height: 100px;
-  background-color: black;
+#current-temperature {
+  font-family: 'Fredoka One', cursive;
+  font-size: 10vh;
+  color: #F3A97F;
+  text-shadow: 0px 0px 5px #F3E77F;
+  margin-left: 1%;
+}
+
+
+/* CurrentWeather Icon */
+#current-weather-sunny {
+  width: 25vh;
+  height: 25vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
   position: absolute;
   z-index: 2;
-  border: 2px solid white;
-  border-radius: 30px;
+  justify-content: stretch;
+  /* justify-content: center; */
+  /* align-items: center; */
+  background-color: #F3E77F;
+  border: thin solid #F3A97F;
+  border-radius: 50%;
+  box-shadow: 0px 0px 50px #F3E77F;
 }
 
-#current-weather-bottom {
-  height: 60vh;
+/* Current Weather Bottom */
+#current-weather-water {
+  height: 50vh;
   width: 100vw;
-  background-color: red;
+  /* background-color: #527B8D; */
   position: relative;
+  z-index: 3;
+
+  background: radial-gradient(ellipse farthest-corner at top center, #f3e77f 0%, #527b8d 40%);
+  background: -webkit-radial-gradient(ellipse farthest-corner at top center, #f3e77f 0%, #527b8d 20%);
+  background: -moz-radial-gradient(ellipse farthest-corner at top center, #f3e77f 0%, #527b8d 20%);
 }
+
+#current-weather-sand {
+  width: 100vw;
+  height: 90%;
+  position: absolute;
+  bottom: 0;
+  z-index: 4;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-flow: row wrap;
+  color: white;
+  background: #fff6ce;
+  background: linear-gradient(179deg,#fff6ce 0%, #c49e7a 80%);
+  background: -webkit-linear-gradient(179deg,#fff6ce 0%, #c49e7a 80%);
+  background: -moz-linear-gradient(179deg,#fff6ce 0%, #c49e7a 80%);
+}
+
+

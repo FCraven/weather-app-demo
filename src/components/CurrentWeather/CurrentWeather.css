@@ -67,14 +67,20 @@
   bottom: 0;
   z-index: 4;
   display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  flex-flow: row wrap;
-  color: white;
   background: #fff6ce;
   background: linear-gradient(179deg,#fff6ce 0%, #c49e7a 80%);
   background: -webkit-linear-gradient(179deg,#fff6ce 0%, #c49e7a 80%);
   background: -moz-linear-gradient(179deg,#fff6ce 0%, #c49e7a 80%);
 }
 
+#current-weather-info-container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  flex-flow:  column wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: transparent;
+}
 

@@ -16,7 +16,9 @@ const CurrentWeather = (props) => {
       <div id='current-weather-sunny'></div>
       <div id='current-weather-water'>
         <div id="current-weather-sand">
-          
+          <div id='current-weather-info-container'>
+            
+          </div>
         </div>
       </div>
 

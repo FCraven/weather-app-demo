@@ -5,7 +5,7 @@ const CurrentWeather = (props) => {
 
   const { current, place, time } = props;
   const temperature = Math.round(current.temperature)
-  const feelsLike = Math.round(current.apparentTemperature)
+  // const feelsLike = Math.round(current.apparentTemperature)
   const locationFilter = place.filter(el => el.types.includes('neighborhood'))
 
 const location = locationFilter[0].formatted_address.split(',')[0]
@@ -17,6 +17,7 @@ const location = locationFilter[0].formatted_address.split(',')[0]
       <div id='current-weather-top'>
         <div id='current-location'>{location}</div>
         <div id='current-temperature'>{temperature}°</div>
+        <div id='current-time'>{time}</div>
       </div>
       <div id='current-weather-sunny'></div>
       <div id='current-weather-water'>

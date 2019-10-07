@@ -3,7 +3,7 @@ import './MinuteWeather.css'
 
 const MinuteWeather =(props)=> {
   return(
-    <div></div>
+    <div>Minute Weather</div>
   )
 }
 

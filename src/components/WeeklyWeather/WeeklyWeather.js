@@ -3,7 +3,7 @@ import './WeeklyWeather.css'
 
 const WeeklyWeather =(props)=> {
   return(
-    <div></div>
+    <div>WeeklyWeather</div>
   )
 }
 

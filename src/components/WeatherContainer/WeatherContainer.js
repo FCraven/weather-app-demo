@@ -101,6 +101,7 @@ export default class WeatherContainer extends Component {
 
   render() {
     //  const dateObj = new DateObj(this.state.currently.time)
+    console.log(`STATE-->`, this.state)
     return (
       <div style={{ height: '100%', width: '100%' }}>
         {this.state.loading ?

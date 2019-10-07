@@ -34,10 +34,10 @@ const CurrentWeather = (props) => {
       <div id='current-weather-water'>
         <div id="current-weather-sand">
           <nav id='current-weather-info-container'>
-            <btn class='current-weather-nav-btn'>By The Minute</btn>
-            <btn class='current-weather-nav-btn'>On The Hour</btn>
-            <btn class='current-weather-nav-btn'>All Day</btn>
-            <btn class='current-weather-nav-btn'>5-Day Forecast</btn>
+            <div class='current-weather-nav-btn'>By The Minute</div>
+            <div class='current-weather-nav-btn'>On The Hour</div>
+            <div class='current-weather-nav-btn'>All Day</div>
+            <div class='current-weather-nav-btn'>5-Day Forecast</div>
           </nav>
         </div>
       </div>

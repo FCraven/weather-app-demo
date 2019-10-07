@@ -89,6 +89,7 @@
 
 .current-weather-nav-btn {
   border: 2px solid black;
+  border-radius: 3em;
   background-color: sandybrown;
   width: 40vw;
   height: 20%;
@@ -98,7 +99,7 @@
   align-items: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   text-shadow: 0 0 15px rgba(255,255,255,.5), 0 0 10px rgba(255,255,255,.5);
-  font-size: 5vw;
+  font-size: 3vw;
 }
 
 

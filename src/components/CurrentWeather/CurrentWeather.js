@@ -10,7 +10,7 @@ const CurrentWeather = (props) => {
   // const feelsLike = Math.round(current.apparentTemperature)
   const locationFilter = place.filter(el => el.types.includes('neighborhood'))
 
-  const location = locationFilter[0].formatted_address.split(',')[0]
+  const location = locationFilter[0].formatted_address.split(',')[0] || 'Planet Earth'
 
 
   return (

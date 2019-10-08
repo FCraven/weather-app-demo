@@ -1,5 +1,7 @@
 import './CurrentWeather.css'
 import React from 'react'
+import { NavLink } from 'react-router-dom'
+
 
 const CurrentWeather = (props) => {
 
@@ -8,9 +10,8 @@ const CurrentWeather = (props) => {
   // const feelsLike = Math.round(current.apparentTemperature)
   const locationFilter = place.filter(el => el.types.includes('neighborhood'))
 
-const location = locationFilter[0].formatted_address.split(',')[0]
+  const location = locationFilter[0].formatted_address.split(',')[0]
 
-  console.log(`location-->`, location)
 
   return (
     <section id='current-weather-container'>
@@ -23,14 +24,21 @@ const location = locationFilter[0].formatted_address.split(',')[0]
       <div id='current-weather-water'>
         <div id="current-weather-sand">
           <nav id='current-weather-info-container'>
-            <div className='current-weather-nav-btn'>By The Minute</div>
-            <div className='current-weather-nav-btn'>On The Hour</div>
-            <div className='current-weather-nav-btn'>All Day</div>
-            <div className='current-weather-nav-btn'>5-Day Forecast</div>
+            <NavLink to='/minute' activeClassName=''>
+              <div className='current-weather-nav-btn'>By The Minute</div>
+            </NavLink>
+            <NavLink to='/hourly' activeClassName=''>
+              <div className='current-weather-nav-btn'>On The Hour</div>
+            </NavLink>
+            <NavLink to='/daily' activeClassName=''>
+              <div className='current-weather-nav-btn'>All Day</div>
+            </NavLink>
+            <NavLink to='/weekly' activeClassName=''>
+              <div className='current-weather-nav-btn'>5-Day Forecast</div>
+            </NavLink>
           </nav>
         </div>
       </div>
-
     </section>
   )
 }

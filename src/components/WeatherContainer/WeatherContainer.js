@@ -3,7 +3,11 @@ import React, { Component } from 'react'
 // import { DateObj } from '../../utils'
 import axios from 'axios';
 import CurrentWeather from '../CurrentWeather'
-
+import MinuteWeather from '../MinuteWeather'
+import HourlyWeather from '../HourlyWeather'
+import DailyWeather from '../DailyWeather'
+import WeeklyWeather from '../WeeklyWeather'
+import {Switch, Route} from 'react-router-dom'
 
 export default class WeatherContainer extends Component {
   constructor(props) {
@@ -30,10 +34,7 @@ export default class WeatherContainer extends Component {
 
   async componentDidMount() {
     //sets a function to call tick() every second to keep time relatively accurate
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000
-    );
+    this.timerID = setInterval(() => this.tick(),1000);
 
     //getLocation function calls for geolocation coordinates
     const getLocation = async () => {
@@ -68,7 +69,7 @@ export default class WeatherContainer extends Component {
           loading: false,
           place: results
         })
-        console.log(this.state)
+
       }//end success
 
       //Error handling for rejection case
@@ -101,32 +102,44 @@ export default class WeatherContainer extends Component {
 
   render() {
     //  const dateObj = new DateObj(this.state.currently.time)
-    
+
     return (
       <div style={{ height: '100%', width: '100%' }}>
-        {this.state.loading ?
+
+      {this.state.loading ?
           <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: 'skyBlue',
-            height: '100vh',
-            width: '100vw',
-            color: 'yellow',
-            fontSize: '3em',
-            fontWeight: '5',
-            position: 'relative'
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'skyBlue',
+          height: '100vh',
+          width: '100vw',
+          color: 'yellow',
+          fontSize: '3em',
+          fontWeight: '5',
+          position: 'relative'
           }}>Loading...</div>
           :
-            <CurrentWeather
-              current={this.state.currently}
-              time={this.state.currentTime}
-              place={this.state.place}
-            />
-        }
+          <div>
+            <Switch>
+              <Route  exact path='/'
+                      render={() => <CurrentWeather current={this.state.currently}
+                                                    time={this.state.currentTime}
+                                                    place={this.state.place}
+                      />} />
+              <Route path='/minute' component={MinuteWeather} />
+              <Route path='/hourly' component={HourlyWeather} />
+              <Route path='/daily' component={DailyWeather} />
+              <Route path='/weekly' component={WeeklyWeather} />
+            </Switch>
+          </div>
+
+      }
+
+
       </div>
     )
   } //end render
-} //end component
 
+} //end component
 

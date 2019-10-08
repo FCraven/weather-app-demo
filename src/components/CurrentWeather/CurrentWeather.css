@@ -27,26 +27,29 @@
   font-family: 'Fredoka One', cursive;
   font-size: 5vmax;
   color: #F3A97F;
-  text-shadow: 0px 0px 5px #F3E77F;
+  text-shadow: 0px 0px 7px #F3E77F;
   margin-left: 1%;
+  -webkit-text-stroke: 1px orangered;
 }
 
 #current-temperature {
   font-family: 'Fredoka One', cursive;
   font-size: 10vmin;
   color: #F3A97F;
-  text-shadow: 0px 0px 5px #F3E77F;
+  text-shadow: 0px 0px 7px #F3E77F;
   margin-left: 1%;
   z-index: 100;
+  -webkit-text-stroke: 1px orangered;
 }
 
 #current-time {
   font-family: 'Fredoka One', cursive;
   font-size: 3vmax;
   color: #F3A97F;
-  text-shadow: 0px 0px 5px #F3E77F;
+  text-shadow: 0px 0px 7px #F3E77F;
   margin-left: 1%;
   z-index: 100;
+  -webkit-text-stroke: 1px orangered;
 }
 
 
@@ -109,7 +112,7 @@
 }
 
 .current-weather-nav-btn {
-  border: 2px solid black;
+  border: 2px solid orangered;
   border-radius: 3em;
   background-color: sandybrown;
   width: 40vw;

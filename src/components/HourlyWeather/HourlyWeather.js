@@ -3,7 +3,7 @@ import './HourlyWeather.css'
 
 const HourlyWeather =(props)=> {
   return (
-    <div></div>
+    <div>HourlyWeather</div>
   )
 }
 

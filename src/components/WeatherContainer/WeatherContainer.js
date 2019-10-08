@@ -50,8 +50,8 @@ export default class WeatherContainer extends Component {
           params: { latitude, longitude }
         })
         const { results } = response.data
+console.log(`data--->`,data)
 
-        console.log(`client response to Google-->`, results)
         //destructure keys off of data object to set on state
         const { currently, daily, flags, hourly, minutely, offset, timezone } = data
 
@@ -102,7 +102,6 @@ export default class WeatherContainer extends Component {
 
   render() {
     //  const dateObj = new DateObj(this.state.currently.time)
-
     return (
       <div style={{ height: '100%', width: '100%' }}>
 
@@ -120,17 +119,29 @@ export default class WeatherContainer extends Component {
           position: 'relative'
           }}>Loading...</div>
           :
+
           <div>
             <Switch>
               <Route  exact path='/'
-                      render={() => <CurrentWeather current={this.state.currently}
+                      render={()=> <CurrentWeather current={this.state.currently}
                                                     time={this.state.currentTime}
-                                                    place={this.state.place}
-                      />} />
-              <Route path='/minute' component={MinuteWeather} />
-              <Route path='/hourly' component={HourlyWeather} />
-              <Route path='/daily' component={DailyWeather} />
-              <Route path='/weekly' component={WeeklyWeather} />
+                                                    place={this.state.place}/>}/>
+              <Route path='/minute'
+                    render={()=> <MinuteWeather minute={this.state.minutely}
+                                                time={this.state.currentTime}
+                                                place={this.state.place} />}/>
+              <Route path='/hourly'
+                    render={()=> <HourlyWeather hourly={this.state.hourly}
+                                                time={this.state.currentTime}
+                                                place={this.state.place}/>}/>
+              <Route path='/daily'
+                    render={()=> <DailyWeather daily={this.state.daily}
+                                                time={this.state.currentTime}
+                                                place={this.state.place}/>}/>
+              <Route path='/forecast'
+                    render={()=> <WeeklyWeather weekly={this.state.daily}
+                                                time={this.state.currentTime}
+                                                place={this.state.place}/>}/>
             </Switch>
           </div>
 

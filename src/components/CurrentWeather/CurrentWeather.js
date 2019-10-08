@@ -33,7 +33,7 @@ const CurrentWeather = (props) => {
             <NavLink to='/daily' activeClassName=''>
               <div className='current-weather-nav-btn'>All Day</div>
             </NavLink>
-            <NavLink to='/weekly' activeClassName=''>
+            <NavLink to='/forecast' activeClassName=''>
               <div className='current-weather-nav-btn'>5-Day Forecast</div>
             </NavLink>
           </nav>

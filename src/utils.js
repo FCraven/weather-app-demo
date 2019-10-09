@@ -1,5 +1,5 @@
 
-export class DateObj {
+export default class DateObj {
   constructor(unixTimestamp){
     // Short Months array
     this.short_months_arr = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];

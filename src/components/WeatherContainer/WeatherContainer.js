@@ -102,6 +102,7 @@ console.log(`data--->`,data)
 
   render() {
     //  const dateObj = new DateObj(this.state.currently.time)
+    console.log('DAILY STATE--->', this.state.daily)
     return (
       <div style={{ height: '100%', width: '100%' }}>
 

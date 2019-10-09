@@ -15,14 +15,19 @@ const MinuteWeatherCard =(props)=> {
                   justifyContent: 'space-between',
                   alignItems: 'center',
                   flexFlow: 'row nowrap',
-                  margin: '1vw'}}>
+                  margin: '1vw',
+                  border: 'thin solid black',
+                  boxShadow: '0px 5px 20px -2px rgba(0,0,0,0.3)'}}>
       <div style={{ backgroundColor: 'lightBlue',
                     height: '100%',
-                    padding: ''}}>
-                    {`: ${new DateObj(minute.time).minutes}`}
-                    </div>
+                    flexBasis: '25%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                    }}>
+                    {`: ${new DateObj(minute.time).minutes}`}</div>
       <div>{minute.precipIntensity}</div>
-      <div>{`${minute.precipProbability *100}%` }</div>
+      <div>{`${Math.round(minute.precipProbability *100)}%` }</div>
       <div>{minute.precipType}</div>
     </div>
   )

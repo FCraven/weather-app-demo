@@ -25,9 +25,9 @@ const MinuteWeatherCard =(props)=> {
                     justifyContent: 'center',
                     alignItems: 'center'
                     }}>
-                    {`: ${new DateObj(minute.time).minutes}`}</div>
+                    {`:${new DateObj(minute.time).minutes}`}</div>
       <div>{minute.precipIntensity}</div>
-      <div>{`${Math.round(minute.precipProbability *100)}%` }</div>
+      <div>{`${Math.round(minute.precipProbability *100)}%`}</div>
       <div>{minute.precipType}</div>
     </div>
   )

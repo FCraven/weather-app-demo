@@ -9,7 +9,7 @@ const MinuteWeather =(props)=> {
   const minutesMap = data.map(el => <MinuteWeatherCard minute={el}/>)
   return(
     <section id='minute-weather-container'>
-      <div style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'space-between', alignItems: 'center',  color: 'white', height: '10vh', backgroundColor: 'slateGrey', position:'fixed', width: '100vw'}}>
+      <div style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'space-between', alignItems: 'center',  color: 'white', height: '10vh', backgroundColor: 'slateGrey', position:'fixed', width: '100vw', boxShadow: '0px 0px 50px 5px rgba(0,0,0,0.65)'}}>
         <Link to='/' style={{padding: '2%'}}>Back to Current Weather</Link>
         <div style={{padding: '2%', flexBasis: '55%'}}>{props.minute.summary}</div>
       </div>

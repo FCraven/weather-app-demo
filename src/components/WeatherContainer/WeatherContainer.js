@@ -50,7 +50,6 @@ export default class WeatherContainer extends Component {
           params: { latitude, longitude }
         })
         const { results } = response.data
-console.log(`data--->`,data)
 
         //destructure keys off of data object to set on state
         const { currently, daily, flags, hourly, minutely, offset, timezone } = data
@@ -147,11 +146,8 @@ console.log(`data--->`,data)
           </div>
 
       }
-
-
       </div>
     )
   } //end render
-
 } //end component
 

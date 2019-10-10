@@ -1,16 +1,14 @@
 import React from 'react'
 import './HourlyCardMiddle.css'
+import HourlyCardMiddleTop from './HourlyCardMiddleTop'
+import HourlyCardMiddleBottom from './HourlyCardMiddleBottom'
 
 const HourlyCardMiddle =(props)=> {
   const hour = props.hour
   return (
       <div id='hourly-weather-card-mid'>
-        <div> Icon---> {hour.icon}</div>
-        <div id='wind-info' >
-          <div>Wind Bearing --> {hour.windBearing}</div>
-          <div>Wind Gust --> {hour.windGust}</div>
-          <div>Wind Speed --> {hour.windSpeed}</div>
-        </div>
+        <HourlyCardMiddleTop hour={hour} />
+        <HourlyCardMiddleBottom hour={hour} />
       </div>
   )
 }

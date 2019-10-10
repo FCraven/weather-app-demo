@@ -6,7 +6,7 @@ import HourlyCardLeftBottom from './HourlyCardLeftBottom'
 const HourlyWeatherCardLeft =(props)=> {
   const hour = props.hour
   return (
-      <div id="hourly-weather-card-left">
+      <div  id="hourly-weather-card-left">
         <HourlyCardLeftTop hour={hour} />
         <HourlyCardLeftBottom hour={hour} />
       </div>

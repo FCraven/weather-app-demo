@@ -9,21 +9,20 @@ const HourlyWeatherCard = (props) => {
   return (
     <div  className='hourly-weather-card'
           style={{  border: 'thin solid black',
-                    display: 'flex',
-                    flexFlow: 'row wrap',
+                    display: 'inline-flex',
+                    flexFlow: 'row nowrap',
                     justifyContent: 'space-between',
                     alignItems: 'stretch',
                     padding: '1em',
                     margin: '1em',
                     width: '80vw',
-                    height: '40vh',
+                    height: '20%',
                     backgroundColor: 'Azure',
                     overflow: 'auto'}}>
 
       <HourlyCardLeft hour={hour} />
       <HourlyCardMiddle hour={hour} />
       <HourlyCardRight hour={hour} />
-      
     </div>
 
   )

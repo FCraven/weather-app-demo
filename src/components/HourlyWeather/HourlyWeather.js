@@ -16,7 +16,9 @@ const HourlyWeather =(props)=> {
                     flexFlow:'column nowrap',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    backgroundColor: 'lightCyan' }}>
+                    backgroundColor: 'lightCyan',
+                    height: '100%',
+                    width: '100%' }}>
 
       <div style={{ display: 'flex',
                     justifyContent: 'space-between',

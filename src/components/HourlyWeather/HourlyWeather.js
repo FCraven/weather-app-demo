@@ -4,7 +4,6 @@ import HourlyWeatherCard from './HourlyWeatherCard'
 import { Link } from 'react-router-dom'
 
 const HourlyWeather =(props)=> {
-  console.log('Hourly props -->', props)
   const hourly = props.hourly
   const hours = hourly.data;
   const summary = hourly.summary

@@ -4,7 +4,12 @@ import './HourlyCardLeftBottom.css'
 const HourlyCardLeftBottom =(props)=> {
   const hour = props.hour
   return (
-      <div id='temperature-info'>
+      <div id='temperature-info'
+          style={{
+                  position: 'relative',
+                  height: '50%',
+                  border: '2px red dotted'
+                }}>
           <div>Feels Like Temp --> {hour.apparentTemperature}</div>
           <div>
             <div>Actual Temperature --> {hour.temperature}</div>

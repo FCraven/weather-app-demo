@@ -11,26 +11,37 @@ const HourlyWeather =(props)=> {
   const hoursMap = hours.map(el => <HourlyWeatherCard hour={el} />)
 
   return (
+    <div>
+      <div style={{ display: 'flex',
+                    position: 'fixed',
+                    zIndex: '2',
+                    justifyContent: 'space-between',
+                    alignItems:'center',
+                    backgroundColor: 'slateGrey',
+                    height: '8vmax',
+                    width: '100%',
+                    fontSize: '1.8vw'
+                    }}>
+        <Link to='/'>Home icon goes here</Link>
+        <div style={{flexBasis: 'content'}}>{summary}</div>
+        <div>{icon}</div>
+      </div>
     <div  id='hourly-weather-container'
           style={{  display:'flex',
                     flexFlow:'column nowrap',
+                    postion: 'relative',
                     justifyContent: 'center',
                     alignItems: 'center',
                     backgroundColor: 'lightCyan',
                     height: '100%',
-                    width: '100%' }}>
+                    width: '100%',
+                    paddingTop: '8vmax',
+                    fontSize: '1.5vw' }}>
 
-      <div style={{ display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems:'center'}}>
-        <Link to='/'>Home icon goes here</Link>
-        <div>{icon}</div>
-        <div>{summary}</div>
-      </div>
-      <div id='hours-map-container'>
-        {hoursMap}
-      </div>
+      {/* MAPS OUT HOURLY WEATHER CARDS */}
+      {hoursMap}
     </div>
+  </div>
   )
 }
 

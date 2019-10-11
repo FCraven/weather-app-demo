@@ -9,10 +9,12 @@ const HourlyWeatherCard = (props) => {
   return (
     <div  className='hourly-weather-card'
           style={{  border: 'thin solid black',
+                    position:'relative',
                     display: 'inline-flex',
                     flexFlow: 'row nowrap',
                     justifyContent: 'space-between',
                     alignItems: 'stretch',
+                    alignContent: 'stretch',
                     padding: '1em',
                     margin: '1em',
                     width: '80vw',
